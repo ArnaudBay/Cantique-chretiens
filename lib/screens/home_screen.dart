@@ -1,0 +1,127 @@
+import 'package:flutter/material.dart';
+import '../widgets/category_card.dart';
+import '../models/song.dart';
+import 'song_list_screen.dart';
+import 'favorites_screen.dart';
+import 'search_screen.dart';
+
+class HomeScreen extends StatelessWidget {
+  final List<Song> songs;
+
+  const HomeScreen({super.key, required this.songs});
+
+  @override
+  Widget build(BuildContext context) {
+    final categories = _getCategories();
+
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Recueil de Cantiques'),
+        backgroundColor: Colors.green[700],
+        elevation: 0,
+        foregroundColor: Colors.white,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.search, color: Colors.white),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => SearchScreen(songs: songs),
+                ),
+              );
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.favorite, color: Colors.white),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => FavoritesScreen(songs: songs),
+                ),
+              );
+            },
+          ),
+        ],
+      ),
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Colors.green[700]!,
+              Colors.green[500]!,
+              Colors.white,
+            ],
+          ),
+        ),
+        child: Column(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(20),
+              child: const Text(
+                'Cantiques Chrétiens',
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+            Expanded(
+              child: Container(
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(30),
+                    topRight: Radius.circular(30),
+                  ),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: GridView.builder(
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 16,
+                      mainAxisSpacing: 16,
+                      childAspectRatio: 1.2,
+                    ),
+                    itemCount: categories.length,
+                    itemBuilder: (context, index) {
+                      final category = categories.keys.elementAt(index);
+                      return CategoryCard(
+                        category: category,
+                        songCount: categories[category]!,
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => SongListScreen(
+                                songs: songs.where((song) => song.category == category).toList(),
+                                category: category,
+                              ),
+                            ),
+                          );
+                        },
+                      );
+                    },
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Map<String, int> _getCategories() {
+    final categories = <String, int>{};
+    for (var song in songs) {
+      categories[song.category] = (categories[song.category] ?? 0) + 1;
+    }
+    return categories;
+  }
+}
