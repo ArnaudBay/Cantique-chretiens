@@ -1,5 +1,3 @@
-import '../models/song.dart';
-
 class Song {
   final String id;
   final String title;
@@ -7,7 +5,7 @@ class Song {
   final String category;
   final String author;
   final int number;
-  final bool isFavorite;
+  bool isFavorite; // Changé de final à normal
 
   Song({
     required this.id,

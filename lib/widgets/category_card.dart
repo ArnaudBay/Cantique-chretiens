@@ -21,13 +21,13 @@ class CategoryCard extends StatelessWidget {
         onTap: onTap,
         borderRadius: BorderRadius.circular(15),
         child: Container(
-          padding: const EdgeInsets.all(12), // Réduit le padding
+          padding: const EdgeInsets.all(12),
           decoration: BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
               colors: [
-                Colors.green[50]!,
+                Colors.green[100]!,
                 Colors.green[50]!,
               ],
             ),
@@ -36,31 +36,57 @@ class CategoryCard extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(
-                _getCategoryIcon(category),
-                size: 32, // Réduit la taille de l'icône
-                color: Colors.green[700],
-              ),
-              const SizedBox(height: 6), // Espacement réduit
+              // Container pour l'icône personnalisée
               Container(
-                height: 32, // Hauteur fixe pour le texte
+                width: 48,
+                height: 48,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(12),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.green.withOpacity(0.2),
+                      blurRadius: 8,
+                      offset: const Offset(0, 3),
+                    ),
+                  ],
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(8),
+                  child: Image.asset(
+                    _getCategoryIconPath(category),
+                    fit: BoxFit.contain,
+                    errorBuilder: (context, error, stackTrace) {
+                      // Si l'icône n'est pas trouvée, afficher une icône par défaut
+                      return Icon(
+                        Icons.library_music,
+                        color: Colors.green[700],
+                        size: 24,
+                      );
+                    },
+                  ),
+                ),
+              ),
+              const SizedBox(height: 8),
+              Container(
+                height: 32,
                 child: Text(
                   category,
                   style: TextStyle(
-                    fontSize: 12, // Police plus petite
+                    fontSize: 12,
                     fontWeight: FontWeight.bold,
                     color: Colors.green[900],
                   ),
                   textAlign: TextAlign.center,
-                  maxLines: 2, // Maximum 2 lignes
-                  overflow: TextOverflow.ellipsis, // Points de suspension si trop long
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
                 ),
               ),
-              const SizedBox(height: 2), // Espacement réduit
+              const SizedBox(height: 2),
               Text(
                 '$songCount cantique${songCount > 1 ? 's' : ''}',
                 style: TextStyle(
-                  fontSize: 10, // Police plus petite
+                  fontSize: 10,
                   color: Colors.green[600],
                 ),
               ),
@@ -71,28 +97,29 @@ class CategoryCard extends StatelessWidget {
     );
   }
 
-  IconData _getCategoryIcon(String category) {
+  // CETTE FONCTION APPELLE AUTOMATIQUEMENT VOS ICÔNES
+  String _getCategoryIconPath(String category) {
     switch (category.toLowerCase()) {
       case 'évangélisation':
-        return Icons.volume_up;
+        return 'assets/icons/evangelisation.png';
       case 'salut':
-        return Icons.favorite;
+        return 'assets/icons/salut.png';
       case 'sainteté':
-        return Icons.flag;
+        return 'assets/icons/saintete.png';
       case 'bible':
-        return Icons.book;
+        return 'assets/icons/bible.png';
       case 'unité':
-        return Icons.people;
+        return 'assets/icons/unite.png';
       case 'combat spirituel':
-        return Icons.security;
+        return 'assets/icons/combat.png';
       case 'famille':
-        return Icons.family_restroom;
+        return 'assets/icons/famille.png';
       case 'éthique chrétienne':
-        return Icons.gavel;
+        return 'assets/icons/ethique.png';
       case 'prophétie':
-        return Icons.visibility;
+        return 'assets/icons/prophetie.png';
       default:
-        return Icons.library_music;
+        return 'assets/icons/default.png';
     }
   }
 }

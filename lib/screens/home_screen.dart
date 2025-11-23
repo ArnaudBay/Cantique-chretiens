@@ -4,6 +4,7 @@ import '../models/song.dart';
 import 'song_list_screen.dart';
 import 'favorites_screen.dart';
 import 'search_screen.dart';
+import 'about_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   final List<Song> songs;
@@ -43,6 +44,31 @@ class HomeScreen extends StatelessWidget {
               );
             },
           ),
+          PopupMenuButton<String>(
+            icon: const Icon(Icons.more_vert, color: Colors.white),
+            onSelected: (value) {
+              if (value == 'about') {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const AboutScreen(),
+                  ),
+                );
+              }
+            },
+            itemBuilder: (BuildContext context) => [
+              const PopupMenuItem<String>(
+                value: 'about',
+                child: Row(
+                  children: [
+                    Icon(Icons.info, color: Colors.green),
+                    SizedBox(width: 8),
+                    Text('À Propos'),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ],
       ),
       body: Container(
@@ -81,8 +107,30 @@ class HomeScreen extends StatelessWidget {
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
-                  child: GridView.builder(
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  child: categories.isEmpty
+                      ? const Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.music_note,
+                          size: 64,
+                          color: Colors.grey,
+                        ),
+                        SizedBox(height: 16),
+                        Text(
+                          'Aucun cantique disponible',
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Colors.grey,
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                      : GridView.builder(
+                    gridDelegate:
+                    const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       crossAxisSpacing: 16,
                       mainAxisSpacing: 16,
@@ -99,7 +147,10 @@ class HomeScreen extends StatelessWidget {
                             context,
                             MaterialPageRoute(
                               builder: (context) => SongListScreen(
-                                songs: songs.where((song) => song.category == category).toList(),
+                                songs: songs
+                                    .where((song) =>
+                                song.category == category)
+                                    .toList(),
                                 category: category,
                               ),
                             ),

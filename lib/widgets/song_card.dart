@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import '../models/song.dart';
+import '../services/favorites_service.dart';
 
-class SongCard extends StatelessWidget {
+class SongCard extends StatefulWidget {
   final Song song;
   final VoidCallback onTap;
 
@@ -12,6 +13,26 @@ class SongCard extends StatelessWidget {
   });
 
   @override
+  State<SongCard> createState() => _SongCardState();
+}
+
+class _SongCardState extends State<SongCard> {
+  late Song _song;
+  final FavoritesService _favoritesService = FavoritesService();
+
+  @override
+  void initState() {
+    super.initState();
+    _song = widget.song;
+  }
+
+  void _toggleFavorite() {
+    setState(() {
+      _favoritesService.toggleFavorite(_song);
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
@@ -20,7 +41,7 @@ class SongCard extends StatelessWidget {
         leading: CircleAvatar(
           backgroundColor: Colors.green[100],
           child: Text(
-            song.number.toString(),
+            _song.number.toString(),
             style: TextStyle(
               fontWeight: FontWeight.bold,
               color: Colors.green[700],
@@ -28,18 +49,25 @@ class SongCard extends StatelessWidget {
           ),
         ),
         title: Text(
-          song.title,
+          _song.title,
           style: const TextStyle(fontWeight: FontWeight.bold),
         ),
         subtitle: Text(
-          'Cantique ${song.number} - ${song.author}',
+          'Cantique ${_song.number} - ${_song.author}',
           style: TextStyle(color: Colors.grey[600]),
         ),
-        trailing: Icon(
-          song.isFavorite ? Icons.favorite : Icons.favorite_border,
-          color: song.isFavorite ? Colors.red : Colors.grey,
+        trailing: IconButton(
+          icon: Icon(
+            _favoritesService.isFavorite(_song)
+                ? Icons.favorite
+                : Icons.favorite_border,
+            color: _favoritesService.isFavorite(_song)
+                ? Colors.red
+                : Colors.grey,
+          ),
+          onPressed: _toggleFavorite,
         ),
-        onTap: onTap,
+        onTap: widget.onTap,
       ),
     );
   }
