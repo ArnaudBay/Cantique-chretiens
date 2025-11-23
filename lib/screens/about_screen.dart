@@ -24,7 +24,6 @@ class AboutScreen extends StatelessWidget {
                     width: 80, // Réduit de 100 à 80
                     height: 80,
                     decoration: BoxDecoration(
-                      color: Colors.green[100],
                       borderRadius: BorderRadius.circular(20), // Réduit de 25 à 20
                       boxShadow: [
                         BoxShadow(
@@ -34,9 +33,17 @@ class AboutScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    child: Image.asset(
-                      'assets/images/splash.jpg',
+                    child: ClipOval(
+                      child: SizedBox(
+                        width: 150,
+                        height: 150,
+                        child: Image.asset(
+                          'assets/images/splash.jpg',
+                          fit: BoxFit.cover,
+                        ),
+                      ),
                     ),
+
                   ),
                   const SizedBox(height: 12), // Réduit de 16 à 12
                   Text(
@@ -158,8 +165,9 @@ class AboutScreen extends StatelessWidget {
                         child: _buildDeveloperCardWithPhoto(
                           name: 'William GBOGODO',
                           role: 'Développeur Flutter',
-                          specialty: 'Interface & Expérience Utilisateur',
-                          photoPath: 'assets/images/william.jpg',
+                          specialty: 'Interface & Expérience Utilisateur'
+                              'williamgbogodo@gmail.com',
+                          photoPath: 'assets/images/william.png',
                         ),
                       ),
                       const SizedBox(width: 8), // Réduit de 12 à 8
@@ -167,8 +175,9 @@ class AboutScreen extends StatelessWidget {
                         child: _buildDeveloperCardWithPhoto(
                           name: 'Arnaud BAYALE',
                           role: 'Développeur Flutter',
-                          specialty: 'Architecture & Fonctionnalités',
-                          photoPath: 'assets/arnaud.png',
+                          specialty: 'Architecture & Fonctionnalités'
+                              'arnaudbayale@gmail.com',
+                          photoPath: 'assets/images/arnaud.png',
                         ),
                       ),
                     ],
