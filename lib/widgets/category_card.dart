@@ -38,8 +38,8 @@ class CategoryCard extends StatelessWidget {
             children: [
               // Container pour l'icône personnalisée
               Container(
-                width: 48,
-                height: 48,
+                width: 40,
+                height: 40,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(12),
@@ -67,13 +67,13 @@ class CategoryCard extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(height: 8),
+              const SizedBox(height: 6),
               Container(
-                height: 32,
+                height: 30,
                 child: Text(
                   category,
                   style: TextStyle(
-                    fontSize: 12,
+                    fontSize: 10,
                     fontWeight: FontWeight.bold,
                     color: Colors.green[900],
                   ),
