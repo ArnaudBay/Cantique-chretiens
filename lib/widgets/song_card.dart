@@ -19,16 +19,42 @@ class SongCard extends StatefulWidget {
 class _SongCardState extends State<SongCard> {
   late Song _song;
   final FavoritesService _favoritesService = FavoritesService();
+  bool _isFavorite = false;
+  bool _isLoading = false;
 
   @override
   void initState() {
     super.initState();
     _song = widget.song;
+    _loadFavoriteStatus();
   }
 
-  void _toggleFavorite() {
+  Future<void> _loadFavoriteStatus() async {
     setState(() {
-      _favoritesService.toggleFavorite(_song);
+      _isLoading = true;
+    });
+
+    // S'assurer que le service est initialisé
+    await _favoritesService.init();
+
+    setState(() {
+      _isFavorite = _favoritesService.isFavorite(_song);
+      _isLoading = false;
+    });
+  }
+
+  Future<void> _toggleFavorite() async {
+    if (_isLoading) return;
+
+    setState(() {
+      _isLoading = true;
+    });
+
+    await _favoritesService.toggleFavorite(_song);
+
+    setState(() {
+      _isFavorite = _favoritesService.isFavorite(_song);
+      _isLoading = false;
     });
   }
 
@@ -56,14 +82,19 @@ class _SongCardState extends State<SongCard> {
           'Cantique ${_song.number} - ${_song.author}',
           style: TextStyle(color: Colors.grey[600]),
         ),
-        trailing: IconButton(
+        trailing: _isLoading
+            ? SizedBox(
+          width: 24,
+          height: 24,
+          child: CircularProgressIndicator(
+            strokeWidth: 2,
+            valueColor: AlwaysStoppedAnimation<Color>(Colors.green[700]!),
+          ),
+        )
+            : IconButton(
           icon: Icon(
-            _favoritesService.isFavorite(_song)
-                ? Icons.favorite
-                : Icons.favorite_border,
-            color: _favoritesService.isFavorite(_song)
-                ? Colors.red
-                : Colors.grey,
+            _isFavorite ? Icons.favorite : Icons.favorite_border,
+            color: _isFavorite ? Colors.red : Colors.grey,
           ),
           onPressed: _toggleFavorite,
         ),

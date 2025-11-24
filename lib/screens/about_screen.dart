@@ -165,18 +165,16 @@ class AboutScreen extends StatelessWidget {
                         child: _buildDeveloperCardWithPhoto(
                           name: 'William GBOGODO',
                           role: 'Développeur Flutter',
-                          specialty: 'Interface & Expérience Utilisateur'
-                              'williamgbogodo@gmail.com',
+                          specialty: 'williamgbogodo@gmail.com',
                           photoPath: 'assets/images/william.png',
                         ),
                       ),
-                      const SizedBox(width: 8), // Réduit de 12 à 8
+                      const SizedBox(width: 8),
                       Expanded(
                         child: _buildDeveloperCardWithPhoto(
                           name: 'Arnaud BAYALE',
-                          role: 'Développeur Flutter',
-                          specialty: 'Architecture & Fonctionnalités'
-                              'arnaudbayale@gmail.com',
+                          role: 'Développeur Web Mobile',
+                          specialty: 'arnaudbayale@gmail.com',
                           photoPath: 'assets/images/arnaud.png',
                         ),
                       ),
