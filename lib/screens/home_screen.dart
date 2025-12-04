@@ -109,56 +109,57 @@ class HomeScreen extends StatelessWidget {
                   padding: const EdgeInsets.all(16.0),
                   child: categories.isEmpty
                       ? const Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.music_note,
-                          size: 64,
-                          color: Colors.grey,
-                        ),
-                        SizedBox(height: 16),
-                        Text(
-                          'Aucun cantique disponible',
-                          style: TextStyle(
-                            fontSize: 18,
-                            color: Colors.grey,
-                          ),
-                        ),
-                      ],
-                    ),
-                  )
-                      : GridView.builder(
-                    gridDelegate:
-                    const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 16,
-                      mainAxisSpacing: 16,
-                      childAspectRatio: 1.2,
-                    ),
-                    itemCount: categories.length,
-                    itemBuilder: (context, index) {
-                      final category = categories.keys.elementAt(index);
-                      return CategoryCard(
-                        category: category,
-                        songCount: categories[category]!,
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => SongListScreen(
-                                songs: songs
-                                    .where((song) =>
-                                song.category == category)
-                                    .toList(),
-                                category: category,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.music_note,
+                                size: 64,
+                                color: Colors.grey,
                               ),
-                            ),
-                          );
-                        },
-                      );
-                    },
-                  ),
+                              SizedBox(height: 16),
+                              Text(
+                                'Aucun cantique disponible',
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.grey,
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
+                      : GridView.builder(
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            crossAxisSpacing: 16,
+                            mainAxisSpacing: 16,
+                            childAspectRatio: 1.2,
+                          ),
+                          itemCount: categories.length,
+                          itemBuilder: (context, index) {
+                            final category = categories.keys.elementAt(index);
+                            return CategoryCard(
+                              category: category,
+                              songCount: categories[category]!,
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => SongListScreen(
+                                      songs: songs
+                                          .where((song) =>
+                                              song.category == category)
+                                          .toList(),
+                                      category: category,
+                                    ),
+                                  ),
+                                );
+                              },
+                              iconPath: _getCategoryIconPath(category),
+                            );
+                          },
+                        ),
                 ),
               ),
             ),
@@ -174,5 +175,32 @@ class HomeScreen extends StatelessWidget {
       categories[song.category] = (categories[song.category] ?? 0) + 1;
     }
     return categories;
+  }
+
+  String _getCategoryIconPath(String category) {
+    switch (category.toLowerCase()) {
+      case 'évangélisation & salut':
+        return 'assets/icons/evangelisation.png';
+      case 'dangers spirituels':
+        return 'assets/icons/danger.png';
+      case 'bible':
+        return 'assets/icons/bible.png';
+      case 'eglise':
+        return 'assets/icons/eglise.png';
+      case 'combat spirituel':
+        return 'assets/icons/combat.png';
+      case 'ethique chrétienne':
+        return 'assets/icons/ethique.png';
+      case 'fin des temps':
+        return 'assets/icons/temps.png';
+      case 'ethique social':
+        return 'assets/icons/social.png';
+      case 'vie pratique & société':
+        return 'assets/icons/societe.png';
+      case 'vie spirituelle':
+        return 'assets/icons/spirituel.png';
+      default:
+        return 'assets/icons/default.png';
+    }
   }
 }

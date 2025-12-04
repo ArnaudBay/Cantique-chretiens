@@ -4,19 +4,20 @@ class CategoryCard extends StatelessWidget {
   final String category;
   final int songCount;
   final VoidCallback onTap;
+  final String iconPath;
 
   const CategoryCard({
     super.key,
     required this.category,
     required this.songCount,
     required this.onTap,
+    required this.iconPath,
   });
 
   @override
   Widget build(BuildContext context) {
     // Calcul des dimensions responsives
     final screenWidth = MediaQuery.of(context).size.width;
-    final screenHeight = MediaQuery.of(context).size.height;
 
     // Facteur d'échelle basé sur la largeur de l'écran
     final scaleFactor = _getScaleFactor(screenWidth);
@@ -45,7 +46,7 @@ class CategoryCard extends StatelessWidget {
             children: [
               // Container pour l'icône personnalisée - Taille responsive
               Container(
-                width: 48 * scaleFactor, // De 40 à 48 avec échelle
+                width: 48 * scaleFactor,
                 height: 48 * scaleFactor,
                 decoration: BoxDecoration(
                   color: Colors.white,
@@ -61,7 +62,7 @@ class CategoryCard extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.all(8 * scaleFactor),
                   child: Image.asset(
-                    _getCategoryIconPath(category),
+                    iconPath, // Utiliser la variable passée au constructeur
                     fit: BoxFit.contain,
                     errorBuilder: (context, error, stackTrace) {
                       return Icon(
@@ -77,21 +78,21 @@ class CategoryCard extends StatelessWidget {
               SizedBox(height: 8 * scaleFactor), // Espacement responsive
 
               // Nom de la catégorie - Texte responsive
-              Container(
-                constraints: BoxConstraints(
-                  minHeight: 32 * scaleFactor, // Hauteur minimale responsive
-                ),
-                child: Text(
-                  category,
-                  style: TextStyle(
-                    fontSize: _getFontSize(screenWidth, isTitle: true), // Taille de police adaptive
-                    fontWeight: FontWeight.bold,
-                    color: Colors.green[900],
-                    height: 1.2, // Interligne pour meilleure lisibilité
+              Flexible(
+                child: Container(
+                  alignment: Alignment.center,
+                  child: Text(
+                    category,
+                    style: TextStyle(
+                      fontSize: _getFontSize(screenWidth, isTitle: true),
+                      fontWeight: FontWeight.bold,
+                      color: Colors.green[900],
+                      height: 1.2, // Interligne pour meilleure lisibilité
+                    ),
+                    textAlign: TextAlign.center,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
                   ),
-                  textAlign: TextAlign.center,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
                 ),
               ),
 
@@ -144,32 +145,6 @@ class CategoryCard extends StatelessWidget {
       return isTitle ? 14 : 12; // Tablettes
     } else {
       return isTitle ? 16 : 13; // Grands écrans
-    }
-  }
-
-  // CETTE FONCTION APPELLE AUTOMATIQUEMENT VOS ICÔNES
-  String _getCategoryIconPath(String category) {
-    switch (category.toLowerCase()) {
-      case 'évangélisation':
-        return 'assets/icons/evangelisation.png';
-      case 'salut':
-        return 'assets/icons/salut.png';
-      case 'sainteté':
-        return 'assets/icons/saintete.png';
-      case 'bible':
-        return 'assets/icons/bible.png';
-      case 'unité':
-        return 'assets/icons/unite.png';
-      case 'combat spirituel':
-        return 'assets/icons/combat.png';
-      case 'famille':
-        return 'assets/icons/famille.png';
-      case 'éthique chrétienne':
-        return 'assets/icons/ethique.png';
-      case 'prophétie':
-        return 'assets/icons/prophetie.png';
-      default:
-        return 'assets/icons/default.png';
     }
   }
 }

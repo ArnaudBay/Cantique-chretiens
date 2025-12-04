@@ -74,6 +74,8 @@ class _SongDetailScreenState extends State<SongDetailScreen> {
                   color: Colors.grey[600],
                 ),
               ),
+              const SizedBox(height: 24),
+              _buildAudioPlayerPlaceholder(),
               const SizedBox(height: 16),
               Container(
                 padding: const EdgeInsets.all(16),
@@ -99,5 +101,36 @@ class _SongDetailScreenState extends State<SongDetailScreen> {
     setState(() {
       _song = _song.copyWith(isFavorite: !_song.isFavorite);
     });
+  }
+
+  Widget _buildAudioPlayerPlaceholder() {
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+      decoration: BoxDecoration(
+        color: Colors.grey[200],
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Column(
+        children: [
+          IconButton(
+            icon: const Icon(Icons.play_arrow, color: Colors.green),
+            iconSize: 48.0,
+            onPressed: () {
+              // TODO: Implementer la logique de lecture audio
+            },
+          ),
+          Slider(
+            value: 0.0,
+            onChanged: (value) {
+              // TODO: Implementer la logique du slider
+            },
+            min: 0.0,
+            max: 100.0, // Durée factice
+            activeColor: Colors.green,
+            inactiveColor: Colors.grey[400],
+          ),
+        ],
+      ),
+    );
   }
 }

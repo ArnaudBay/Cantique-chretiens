@@ -5,7 +5,7 @@ class Song {
   final String category;
   final String author;
   final int number;
-  bool isFavorite; // Changé de final à normal
+  final bool isFavorite;
 
   Song({
     required this.id,
@@ -17,22 +17,36 @@ class Song {
     this.isFavorite = false,
   });
 
-  Song copyWith({
-    String? id,
-    String? title,
-    String? lyrics,
-    String? category,
-    String? author,
-    int? number,
-    bool? isFavorite,
-  }) {
+  factory Song.fromJson(Map<String, dynamic> json) {
     return Song(
-      id: id ?? this.id,
-      title: title ?? this.title,
-      lyrics: lyrics ?? this.lyrics,
-      category: category ?? this.category,
-      author: author ?? this.author,
-      number: number ?? this.number,
+      id: json['id'].toString(),
+      title: json['title'] ?? '',
+      lyrics: json['lyrics'] ?? '',
+      category: json['category'] ?? '',
+      author: json['author'] ?? 'Auteur inconnu',
+      number: json['number'] as int,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'title': title,
+      'lyrics': lyrics,
+      'category': category,
+      'author': author,
+      'number': number,
+    };
+  }
+
+  Song copyWith({bool? isFavorite}) {
+    return Song(
+      id: id,
+      title: title,
+      lyrics: lyrics,
+      category: category,
+      author: author,
+      number: number,
       isFavorite: isFavorite ?? this.isFavorite,
     );
   }

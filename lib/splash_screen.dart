@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'data/songs_data.dart';
+import 'models/song.dart';
 import 'screens/home_screen.dart';
-import './data/songs_data.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -13,14 +16,26 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 5), () {
+    _navigateToNextScreen();
+  }
+
+  Future<void> _navigateToNextScreen() async {
+    // Start the timer and song loading in parallel for efficiency
+    final timerFuture = Future.delayed(const Duration(seconds: 5));
+    final songsFuture = SongsData.loadSongs();
+
+    // Wait for both to complete
+    await Future.wait([timerFuture, songsFuture]);
+
+    if (mounted) {
+      final songs = await songsFuture;
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => HomeScreen(songs: SongsData.getSongs()),
+          builder: (context) => HomeScreen(songs: songs),
         ),
       );
-    });
+    }
   }
 
   @override
@@ -38,8 +53,7 @@ class _SplashScreenState extends State<SplashScreen> {
               ),
             ),
           ),
-
-          // Overlay vert pour améliorer la lisibilité
+          // Overlay with modern withAlpha
           Container(
             width: double.infinity,
             height: double.infinity,
@@ -48,15 +62,15 @@ class _SplashScreenState extends State<SplashScreen> {
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 colors: [
-                  Colors.green[900]!.withOpacity(0.7),
-                  Colors.green[800]!.withOpacity(0.6),
-                  Colors.green[700]!.withOpacity(0.5),
+                  Colors.green[900]!.withAlpha(179), // 70% opacity
+                  Colors.green[800]!.withAlpha(153), // 60% opacity
+                  Colors.green[700]!.withAlpha(128), // 50% opacity
                 ],
               ),
             ),
           ),
 
-          // Éléments décoratifs
+          // Decorative elements
           Positioned(
             top: -50,
             right: -50,
@@ -64,12 +78,11 @@ class _SplashScreenState extends State<SplashScreen> {
               width: 200,
               height: 200,
               decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.05),
+                color: Colors.white.withAlpha(13), // 5% opacity
                 shape: BoxShape.circle,
               ),
             ),
           ),
-
           Positioned(
             bottom: -80,
             left: -80,
@@ -77,26 +90,23 @@ class _SplashScreenState extends State<SplashScreen> {
               width: 250,
               height: 250,
               decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.03),
+                color: Colors.white.withAlpha(8), // 3% opacity
                 shape: BoxShape.circle,
               ),
             ),
           ),
 
-          // Contenu principal
+          // Main content
           SafeArea(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                // Espace vide en haut
                 const SizedBox(height: 20),
-
-                // Contenu central
                 Expanded(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      // LOGO
+                      // Logo
                       Container(
                         width: 120,
                         height: 120,
@@ -105,7 +115,7 @@ class _SplashScreenState extends State<SplashScreen> {
                           borderRadius: BorderRadius.circular(25),
                           boxShadow: [
                             BoxShadow(
-                              color: Colors.black.withOpacity(0.3),
+                              color: Colors.black.withAlpha(77), // 30% opacity
                               blurRadius: 20,
                               offset: const Offset(0, 10),
                             ),
@@ -117,8 +127,7 @@ class _SplashScreenState extends State<SplashScreen> {
                             'assets/images/splash.jpg',
                             fit: BoxFit.contain,
                             errorBuilder: (context, error, stackTrace) {
-                              // Si le logo n'est pas trouvé, afficher une icône par défaut
-                              return Icon(
+                              return const Icon(
                                 Icons.music_note,
                                 size: 50,
                                 color: Color(0xFF2E7D32),
@@ -127,10 +136,9 @@ class _SplashScreenState extends State<SplashScreen> {
                           ),
                         ),
                       ),
-
                       const SizedBox(height: 30),
 
-                      // Titre avec ombre pour mieux ressortir sur l'image
+                      // Title
                       Text(
                         'ECHOCF',
                         style: TextStyle(
@@ -141,40 +149,39 @@ class _SplashScreenState extends State<SplashScreen> {
                           shadows: [
                             Shadow(
                               blurRadius: 10,
-                              color: Colors.black.withOpacity(0.5),
+                              color: Colors.black.withAlpha(128), // 50% opacity
                             ),
                           ],
                         ),
                       ),
-
                       const SizedBox(height: 10),
 
+                      // Subtitle
                       Text(
                         'Recueil de Cantiques',
                         style: TextStyle(
                           fontSize: 16,
-                          color: Colors.white.withOpacity(0.9),
+                          color: Colors.white.withAlpha(230), // 90% opacity
                           fontWeight: FontWeight.w300,
                           shadows: [
                             Shadow(
                               blurRadius: 5,
-                              color: Colors.black.withOpacity(0.3),
+                              color: Colors.black.withAlpha(77), // 30% opacity
                             ),
                           ],
                         ),
                       ),
-
                       const SizedBox(height: 40),
 
-                      // Message dans un container semi-transparent
+                      // Message in a semi-transparent container
                       Container(
                         margin: const EdgeInsets.symmetric(horizontal: 40),
                         padding: const EdgeInsets.all(20),
                         decoration: BoxDecoration(
-                          color: Colors.black.withOpacity(0.4),
+                          color: Colors.black.withAlpha(102), // 40% opacity
                           borderRadius: BorderRadius.circular(15),
                           border: Border.all(
-                            color: Colors.white.withOpacity(0.3),
+                            color: Colors.white.withAlpha(77), // 30% opacity
                             width: 1,
                           ),
                         ),
@@ -190,49 +197,43 @@ class _SplashScreenState extends State<SplashScreen> {
                                 shadows: [
                                   Shadow(
                                     blurRadius: 5,
-                                    color: Colors.black.withOpacity(0.3),
+                                    color: Colors.black.withAlpha(77), // 30% opacity
                                   ),
                                 ],
                               ),
                               textAlign: TextAlign.center,
                             ),
-
                             const SizedBox(height: 15),
-
                             Container(
                               height: 1,
-                              color: Colors.white.withOpacity(0.3),
+                              color: Colors.white.withAlpha(77), // 30% opacity
                             ),
-
                             const SizedBox(height: 15),
-
                             Text(
                               'Entente des Chorales des Cultes en Français',
                               style: TextStyle(
                                 fontSize: 14,
-                                color: Colors.white.withOpacity(0.9),
+                                color: Colors.white.withAlpha(230), // 90% opacity
                                 shadows: [
                                   Shadow(
                                     blurRadius: 3,
-                                    color: Colors.black.withOpacity(0.3),
+                                    color: Colors.black.withAlpha(77), // 30% opacity
                                   ),
                                 ],
                               ),
                               textAlign: TextAlign.center,
                             ),
-
                             const SizedBox(height: 5),
-
                             Text(
                               'Communauté des Églises Baptistes Indépendantes',
                               style: TextStyle(
                                 fontSize: 12,
-                                color: Colors.white.withOpacity(0.8),
+                                color: Colors.white.withAlpha(204), // 80% opacity
                                 fontStyle: FontStyle.italic,
                                 shadows: [
                                   Shadow(
                                     blurRadius: 3,
-                                    color: Colors.black.withOpacity(0.3),
+                                    color: Colors.black.withAlpha(77), // 30% opacity
                                   ),
                                 ],
                               ),
@@ -245,22 +246,16 @@ class _SplashScreenState extends State<SplashScreen> {
                   ),
                 ),
 
-                // Indicateur de chargement
+                // Loading Indicator
                 Padding(
                   padding: const EdgeInsets.only(bottom: 50),
                   child: Column(
                     children: [
-                      SizedBox(
-                        width: 30,
-                        height: 30,
-                        child: CircularProgressIndicator(
-                          valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-                          strokeWidth: 2,
-                        ),
+                      const CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                        strokeWidth: 2,
                       ),
-
                       const SizedBox(height: 15),
-
                       _CountdownTimer(),
                     ],
                   ),
@@ -280,39 +275,40 @@ class _CountdownTimer extends StatefulWidget {
 }
 
 class _CountdownTimerState extends State<_CountdownTimer> {
+  late Timer _timer;
   int _seconds = 5;
 
   @override
   void initState() {
     super.initState();
-    _startTimer();
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (mounted && _seconds > 0) {
+        setState(() {
+          _seconds--;
+        });
+      } else {
+        _timer.cancel();
+      }
+    });
   }
 
-  void _startTimer() {
-    Future.doWhile(() {
-      return Future.delayed(const Duration(seconds: 1), () {
-        if (_seconds > 0) {
-          setState(() {
-            _seconds--;
-          });
-          return true;
-        }
-        return false;
-      });
-    });
+  @override
+  void dispose() {
+    _timer.cancel();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Text(
-      'Démarrage dans $_seconds seconde${_seconds > 1 ? 's' : ''}',
+      _seconds > 0 ? 'Démarrage dans $_seconds seconde${_seconds > 1 ? 's' : ''}' : 'Démarrage...',
       style: TextStyle(
-        color: Colors.white.withOpacity(0.8),
+        color: Colors.white.withAlpha(204), // 80% opacity
         fontSize: 12,
         shadows: [
           Shadow(
             blurRadius: 3,
-            color: Colors.black.withOpacity(0.3),
+            color: Colors.black.withAlpha(77), // 30% opacity
           ),
         ],
       ),
