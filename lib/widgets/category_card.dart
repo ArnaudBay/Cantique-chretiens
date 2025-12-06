@@ -16,10 +16,7 @@ class CategoryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Calcul des dimensions responsives
     final screenWidth = MediaQuery.of(context).size.width;
-
-    // Facteur d'échelle basé sur la largeur de l'écran
     final scaleFactor = _getScaleFactor(screenWidth);
 
     return Card(
@@ -44,7 +41,6 @@ class CategoryCard extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // Container pour l'icône personnalisée - Taille responsive
               Container(
                 width: 48 * scaleFactor,
                 height: 48 * scaleFactor,
@@ -61,23 +57,28 @@ class CategoryCard extends StatelessWidget {
                 ),
                 child: Padding(
                   padding: EdgeInsets.all(8 * scaleFactor),
-                  child: Image.asset(
-                    iconPath, // Utiliser la variable passée au constructeur
-                    fit: BoxFit.contain,
-                    errorBuilder: (context, error, stackTrace) {
-                      return Icon(
-                        Icons.library_music,
-                        color: Colors.green[700],
-                        size: 24 * scaleFactor, // Taille d'icône responsive
-                      );
-                    },
-                  ),
+                  child: iconPath.isNotEmpty
+                      ? Image.asset(
+                          iconPath,
+                          fit: BoxFit.contain,
+                          errorBuilder: (context, error, stackTrace) {
+                            // Fallback in case the specified image is not found
+                            return Icon(
+                              Icons.library_music,
+                              color: Colors.green[700],
+                              size: 24 * scaleFactor,
+                            );
+                          },
+                        )
+                      : Icon(
+                          // Fallback if no path is provided
+                          Icons.library_music,
+                          color: Colors.green[700],
+                          size: 24 * scaleFactor,
+                        ),
                 ),
               ),
-
-              SizedBox(height: 8 * scaleFactor), // Espacement responsive
-
-              // Nom de la catégorie - Texte responsive
+              SizedBox(height: 8 * scaleFactor),
               Flexible(
                 child: Container(
                   alignment: Alignment.center,
@@ -87,7 +88,7 @@ class CategoryCard extends StatelessWidget {
                       fontSize: _getFontSize(screenWidth, isTitle: true),
                       fontWeight: FontWeight.bold,
                       color: Colors.green[900],
-                      height: 1.2, // Interligne pour meilleure lisibilité
+                      height: 1.2,
                     ),
                     textAlign: TextAlign.center,
                     maxLines: 2,
@@ -95,16 +96,13 @@ class CategoryCard extends StatelessWidget {
                   ),
                 ),
               ),
-
-              SizedBox(height: 4 * scaleFactor), // Espacement responsive
-
-              // Nombre de cantiques - Texte responsive
+              SizedBox(height: 4 * scaleFactor),
               Text(
                 '$songCount cantique${songCount > 1 ? 's' : ''}',
                 style: TextStyle(
                   fontSize: _getFontSize(screenWidth, isTitle: false),
                   color: Colors.green[600],
-                  fontWeight: FontWeight.w500, // Un peu plus gras pour mieux lire
+                  fontWeight: FontWeight.w500,
                 ),
               ),
             ],
@@ -114,37 +112,21 @@ class CategoryCard extends StatelessWidget {
     );
   }
 
-  // Fonction pour calculer le facteur d'échelle selon la taille de l'écran
   double _getScaleFactor(double screenWidth) {
-    if (screenWidth < 320) {
-      return 0.8; // Très petits écrans
-    } else if (screenWidth < 375) {
-      return 0.9; // Petits écrans
-    } else if (screenWidth < 414) {
-      return 1.0; // Écrans moyens
-    } else if (screenWidth < 768) {
-      return 1.1; // Grands smartphones
-    } else if (screenWidth < 1024) {
-      return 1.3; // Tablettes
-    } else {
-      return 1.5; // Grands écrans
-    }
+    if (screenWidth < 320) return 0.8;
+    if (screenWidth < 375) return 0.9;
+    if (screenWidth < 414) return 1.0;
+    if (screenWidth < 768) return 1.1;
+    if (screenWidth < 1024) return 1.3;
+    return 1.5;
   }
 
-  // Fonction pour calculer la taille de police adaptive
   double _getFontSize(double screenWidth, {required bool isTitle}) {
-    if (screenWidth < 320) {
-      return isTitle ? 10 : 9; // Très petits écrans
-    } else if (screenWidth < 375) {
-      return isTitle ? 11 : 10; // Petits écrans
-    } else if (screenWidth < 414) {
-      return isTitle ? 12 : 10; // Écrans moyens
-    } else if (screenWidth < 768) {
-      return isTitle ? 13 : 11; // Grands smartphones
-    } else if (screenWidth < 1024) {
-      return isTitle ? 14 : 12; // Tablettes
-    } else {
-      return isTitle ? 16 : 13; // Grands écrans
-    }
+    if (screenWidth < 320) return isTitle ? 10 : 9;
+    if (screenWidth < 375) return isTitle ? 11 : 10;
+    if (screenWidth < 414) return isTitle ? 12 : 10;
+    if (screenWidth < 768) return isTitle ? 13 : 11;
+    if (screenWidth < 1024) return isTitle ? 14 : 12;
+    return isTitle ? 16 : 13;
   }
 }

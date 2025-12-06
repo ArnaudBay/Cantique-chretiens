@@ -157,7 +157,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
                       // Subtitle
                       Text(
-                        'Recueil de Cantiques',
+                        'Recueil des Cantiques',
                         style: TextStyle(
                           fontSize: 16,
                           color: Colors.white.withAlpha(230), // 90% opacity
