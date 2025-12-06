@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'data/songs_data.dart';
-import 'models/song.dart';
 import 'screens/home_screen.dart';
 
 class SplashScreen extends StatefulWidget {
