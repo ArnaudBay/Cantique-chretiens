@@ -178,37 +178,29 @@ class HomeScreen extends StatelessWidget {
   }
 
   String _getCategoryIconPath(String category) {
-    final lowerCategory = category.toLowerCase();
-    if (lowerCategory.contains('evangélisation') || lowerCategory.contains('salut')) {
-      return 'assets/icons/evangelisation.png';
+    switch (category.toLowerCase()) {
+      case 'évangélisation & salut':
+        return 'assets/icons/eglise.png';
+      case 'dangers spirituels':
+        return 'assets/icons/danger.png';
+      case 'bible':
+        return 'assets/icons/bible.png';
+      case 'eglise':
+        return 'assets/icons/eglise.png';
+      case 'combat spirituel':
+        return 'assets/icons/combat.png';
+      case 'ethique chrétienne':
+        return 'assets/icons/ethique.png';
+      case 'fin des temps':
+        return 'assets/icons/temps.png';
+      case 'ethique social':
+        return 'assets/icons/social.png';
+      case 'vie pratique & société':
+        return 'assets/icons/societe.png';
+      case 'vie spirituelle':
+        return 'assets/icons/spirituel.png';
+      default:
+        return 'assets/icons/default.png';
     }
-    if (lowerCategory.contains('danger')) {
-      return 'assets/icons/danger.png';
-    }
-    if (lowerCategory.contains('bible')) {
-      return 'assets/icons/bible.png';
-    }
-    if (lowerCategory.contains('eglise')) {
-      return 'assets/icons/eglise.png';
-    }
-    if (lowerCategory.contains('combat')) {
-      return 'assets/icons/combat.png';
-    }
-    if (lowerCategory.contains('ethique')) {
-      return 'assets/icons/ethique.png';
-    }
-    if (lowerCategory.contains('fin des temps')) {
-      return 'assets/icons/temps.png';
-    }
-    if (lowerCategory.contains('social')) {
-      return 'assets/icons/social.png';
-    }
-    if (lowerCategory.contains('société')) {
-      return 'assets/icons/societe.png';
-    }
-    if (lowerCategory.contains('spirituelle')) {
-      return 'assets/icons/spirituel.png';
-    }
-    return ''; // Retourne un chemin vide si aucune correspondance
   }
 }

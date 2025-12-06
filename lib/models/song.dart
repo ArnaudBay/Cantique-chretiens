@@ -6,6 +6,7 @@ class Song {
   final String author;
   final int number;
   final bool isFavorite;
+  final String? audioPath; // Ajout du chemin pour l'audio
 
   Song({
     required this.id,
@@ -15,6 +16,7 @@ class Song {
     required this.author,
     required this.number,
     this.isFavorite = false,
+    this.audioPath,
   });
 
   factory Song.fromJson(Map<String, dynamic> json) {
@@ -25,6 +27,7 @@ class Song {
       category: json['category'] ?? '',
       author: json['author'] ?? 'Auteur inconnu',
       number: json['number'] as int,
+      audioPath: json['audioPath'], // Lire le chemin audio depuis JSON
     );
   }
 
@@ -36,10 +39,11 @@ class Song {
       'category': category,
       'author': author,
       'number': number,
+      'audioPath': audioPath,
     };
   }
 
-  Song copyWith({bool? isFavorite}) {
+  Song copyWith({bool? isFavorite, String? audioPath}) {
     return Song(
       id: id,
       title: title,
@@ -48,6 +52,7 @@ class Song {
       author: author,
       number: number,
       isFavorite: isFavorite ?? this.isFavorite,
+      audioPath: audioPath ?? this.audioPath,
     );
   }
 }
