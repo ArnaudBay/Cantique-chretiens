@@ -17,7 +17,7 @@ class HomeScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Recueil de Cantiques'),
+        title: const Text('Recueil des Cantiques'),
         backgroundColor: Colors.green[700],
         elevation: 0,
         foregroundColor: Colors.white,
