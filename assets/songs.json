@@ -179,7 +179,7 @@
       "category": "Ethique chrétienne",
       "author": "Sephora Doris SORONAKA",
       "number": 20,
-      "audioPath": "assets/audio/hymn.mp3"
+      "audioPath": "assets/audio/Avortement.mp3"
     },
     {
       "id": "21",
@@ -440,7 +440,7 @@
       "category": "Ethique Social",
       "author": "Primaël SAKPANGBA",
       "number": 49,
-      "audioPath": "assets/audio/hymn.mp3"
+      "audioPath": "assets/audio/CHRETIEN ET AGR.mp3"
     },
     {
       "id": "50",
@@ -476,7 +476,7 @@
       "category": "Vie spirituelle",
       "author": "Ferdinand YASSOUPOU",
       "number": 53,
-      "audioPath": "assets/audio/hymn.mp3"
+      "audioPath": "assets/audio/LA PERSEVERANCE.mp3"
     },
     {
       "id": "54",
@@ -485,7 +485,7 @@
       "category": "Vie spirituelle",
       "author": "Davy NDALLOT",
       "number": 54,
-      "audioPath": "assets/audio/hymn.mp3"
+      "audioPath": "assets/audio/L'HUMILITE DU CHRETIEN.mp3"
     },
     {
       "id": "55",
@@ -494,7 +494,7 @@
       "category": "Vie Pratique & Société",
       "author": "Acquilas Rhodes SORONAKA",
       "number": 55,
-      "audioPath": "assets/audio/hymn.mp3"
+      "audioPath": "assets/audio/Le Choix.mp3"
     },
     {
       "id": "56",
@@ -503,7 +503,7 @@
       "category": "Vie Pratique & Société",
       "author": "Doris Séphora SORONAKA ",
       "number": 56,
-      "audioPath": "assets/audio/hymn.mp3"
+      "audioPath": "assets/audio/LA PRIERE.mp3"
     },
     {
       "id": "57",
@@ -512,7 +512,7 @@
       "category": "Vie Pratique & Société",
       "author": "Junior BENA",
       "number": 57,
-      "audioPath": "assets/audio/hymn.mp3"
+      "audioPath": "assets/audio/LA TRADITION.mp3"
     },
     {
       "id": "58",
@@ -521,7 +521,7 @@
       "category": "Ethique chrétienne",
       "author": "Thierry FACKOU PAINAM",
       "number": 58,
-      "audioPath": "assets/audio/hymn.mp3"
+      "audioPath": "assets/audio/Les rites du Veuvage.mp3"
     },
     {
       "id": "59",
@@ -530,7 +530,7 @@
       "category": "Vie Pratique & Société",
       "author": "Samuel NZOUNGOU",
       "number": 59,
-      "audioPath": "assets/audio/hymn.mp3"
+      "audioPath": "assets/audio/L'homme et le milieu naturel.mp3"
     }
   ]
 }

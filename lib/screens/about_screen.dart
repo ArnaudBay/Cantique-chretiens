@@ -141,7 +141,7 @@ class AboutScreen extends StatelessWidget {
                   _buildTeamMember(
                     name: 'Bureau Exécutif ECHOCF',
                     role: 'Concepteur & Visionnaire',
-                    description: 'L\'idée originale de cette application revient au Bureau Exécutif de l\'ECHOCF, dont la vision inspirante a permis la concrétisation de ce projet numérique au service de la louange.',
+                    description: 'L\'idée originale de cette application revient à notre frère Josué W.GBOGODO choriste de l\'ECHOCF, dont la vision inspirante a permis la concrétisation de ce projet numérique au service de la louange.',
                     icon: Icons.lightbulb_outline,
                   ),
 
