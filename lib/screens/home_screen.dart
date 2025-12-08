@@ -88,7 +88,7 @@ class HomeScreen extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(20),
               child: const Text(
-                'Cantiques Chrétiens',
+                'Proclamons la bonne nouvelle',
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
