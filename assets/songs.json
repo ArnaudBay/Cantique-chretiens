@@ -130,7 +130,7 @@
     {
       "id": "15",
       "title": "LE PECHE",
-      "lyrics": "Intro\n(Tenor & Bass) hou-wé, hou-wé, hou-wé, hou-wé, \n (Soprano & alto)  wé-hou, wé-hou\n(Tenor & Bass) hou-wé, hou-wé, \n\nRefrain\nLe péché est un acte par lequel l'homme désobéit,\nAu commandement de Dieu ou celui de l'église,\nDepuis le ciel au jardin d'Eden le péché a vu le jour (bis)\n\nCouplet\nCar tous ont péché et sont \nPrivés de la gloire de Dieu.\nSi nous reconnaissons nos péchés \nIl est fidèle et juste de nous pardonner",
+      "lyrics": "Intro\n(Tenor & Bass) hou-wé, hou-wé, hou-wé, hou-wé, \n (Soprano & alto)  wé-hou, wé-hou\n(Tenor & Bass) hou-wé, hou-wé, \n\nRefrain\nLe péché est l'acte par lequel l'homme désobéit,\nAu commandement de Dieu ou celui de l'église,\nDepuis le ciel au jardin d'Eden le péché a vu le jour (bis)\n\nCouplet\nCar tous ont péché et sont \nPrivés de la gloire de Dieu.\nSi nous reconnaissons nos péchés \nIl est fidèle et juste de nous pardonner",
       "category": "Evangélisation & salut",
       "author": "Aquilas SORONAKA",
       "number": 15,
@@ -531,6 +531,27 @@
       "author": "Samuel NZOUNGOU",
       "number": 59,
       "audioPath": "assets/audio/L'homme et le milieu naturel.mp3"
+    },
+    {
+      "id": "60",
+      "title": "LES ÉPREUVES DE LA FOI EN CHRIST",
+      "lyrics": "1\nMes frères et sœurs en Jésus-Christ\nNous avons diverses épreuves\nQue nous devons traverser\nAfin d’évaluer notre foi en Christ\n\nRefrain\nMes bien-aimés, soyons rassurés que\nNous serons délivrés des épreuves\nPourvu que nous nous laissions pleinement\nUtiliser par le Saint-Esprit (bis)\n\n2\nPour surmonter toutes les épreuves\nSoyons fermes, inébranlables\nAyons l’amour et la crainte de Dieu\nNous triompherons de toutes les épreuves\n\n3\nDieu n’évalue que par la foi\nPour jauger notre croyance\nSoyons toujours de bons modèles\nSi nous voulons entrer dans son royaume",
+      "category": "Vie Pratique & Société",
+      "author": "Rodrigue KAMANDOULOU",
+      "number": 60,
+      "audioPath": "assets/audio/Les épreuves de la foi en Christ.mp3"
+    },
+    {
+      "id": "61",
+      "title": "LA SCIENCE EST-ELLE UNE MENACE POUR LA FOI CHRÉTIENNE ?",
+      "lyrics": "1\nLa science est l’ensemble de connaissances\nPortant sur les faits et relations\nTandis que la foi est une assurance\nDes choses qu’on espère sans les voir\n\nRefrain\nDieu donna à Salomon\nUne grande intelligence\nEt la sagesse qui surpasse\nToute intelligence du monde\n\n2\nLa science présente de nombreux avantages\nElle intervient dans plusieurs domaines\nOffrant en tout temps un certain confort\nPour le bien de l’humanité\n\n3\nMalgré ces avantages, la science présente\nDes inconvénients sur divers plans\nLa production des bombes, la pollution\nLe réchauffement climatique\n\n4\nChrétiens que ferons-nous face à la science\nMettons Dieu au centre de nos vies\nLisons la Bible quotidiennement\nPour prévenir ces conséquences",
+      "category": "Vie Pratique & Société",
+      "author": "Hyacinthe BIZANGA",
+      "number": 61,
+      "audioPath": "assets/audio/La science est-elle une menace pour la foi chrétienne.mp3"
     }
+
+
+
   ]
 }
