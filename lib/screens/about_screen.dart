@@ -75,7 +75,7 @@ class AboutScreen extends StatelessWidget {
             // Histoire de l'ECHOCF
             _buildSection(
               title: 'Notre Histoire',
-              content: 'Gréée le 05 Décembre 2004, l\'Entente des Chorales des Cultes en Français (ECHOCF) de la CEBI de Bangui a réalisé sa première rencontre inter-chorale le 22 Mai 2007 à l\'issue de laquelle son hymne "Proclamons la Bonne Nouvelle" et son premier cantique d\'ensemble "La Nouvelle Naissance" ont été chantés.',
+              content: 'Créée le 5 décembre 2004, l\'Entente des Chorales des Cultes en Français (ECHOCF) de la CEBI de Bangui a réalisé sa première rencontre inter-chorale le 22 Mai 2007 à l\'issue de laquelle son hymne "Proclamons la Bonne Nouvelle" et son premier cantique d\'ensemble "La Nouvelle Naissance" ont été chantés.',
               icon: Icons.history,
             ),
 
